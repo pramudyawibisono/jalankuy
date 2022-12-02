@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block meta %}
-    <title>Daftar Akomodasi</title>
+    <title>Daftar Destination Area</title>
     <style>
         table, th, td {
             border: 1px solid black;
@@ -17,7 +17,7 @@
             padding-right: 15px;
         }
 
-        .tabel-daftar-akomodasi {
+        .tabel-daftar {
             display: flex;
             justify-content: center;
         }
@@ -32,29 +32,32 @@
 
 {% block content %}
     <div class="container-utama">
-        <h1><strong>Daftar Akomodasi di {{dest_area_name}}</strong></h1>
+        <h1><strong>Daftar Destination Area</strong></h1>
+        <div class="container"> <button onclick="location.href = '/admin_home';"> Kembali </button> </div>
+        <div class="container"> <button onclick="location.href = 'add-destination-area';"> Tambah Destination Area </button> </div>
     </div>
-    <div class="tabel-daftar-akomodasi">
+    <div class="tabel-daftar">
         <table>
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nama</th>
+                    <th>Provinsi</th>
+                    <th>Kota</th>
                     <th>Deskripsi</th>
                     <th>Gambar</th>
-                    <th>Detail</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in accommodation_list %}
+                {% for item in destination_area_list %}
                 <tr>
                     <td>{{forloop.counter}}.</td>
+                    <td>{{item.1}}</td>
                     <td>{{item.2}}</td>
                     <td>{{item.3}}</td>
                     <td>{{item.4}}</td>
-                    <td>
+                    <!-- <td>
                         <button onclick="location.href = '/destination-area/{{item.1}}/accommodations/{{item.0}}';"> Lihat Detail </button>
-                    </td>
+                    </td> -->
                 </tr>
                 {% endfor %}
             </tbody>
