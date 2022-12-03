@@ -4,6 +4,8 @@ from collections import namedtuple
 from django.http.response import HttpResponseRedirect, HttpResponseNotFound
 from .forms import *
 
+from django.contrib.auth.decorators import user_passes_test, login_required
+
 # Create your views here.
 def namedtuplefetchall(cursor):
     "Return all rows from a cursor as a namedtuple"
@@ -18,14 +20,16 @@ def execute_query(query):
         result = cursor.fetchall()
     return result
 
+@login_required(login_url='/auth/login')
+@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def home_admin(request):
 
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     return render(request, 'home_admin.html')
 
+@login_required(login_url='/auth/login')
+@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def view_all_list(request, idcommand):
 
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if (idcommand=="destination-area"):
         saved_values = ["Destination Area", "Provinsi", "Kota", "add-"+idcommand]
         item_list = execute_query(f"SELECT * FROM DESTINATION_AREA")
@@ -42,9 +46,10 @@ def view_all_list(request, idcommand):
 
     return render(request, 'admin_all_list.html', context)
 
+@login_required(login_url='/auth/login')
+@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_destination_area(request):
 
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = DestinationAreaForm(request.POST)
         if form.is_valid():
@@ -64,9 +69,10 @@ def add_destination_area(request):
 
     return render(request, 'add_destination_area.html', {'form': form})
 
+@login_required(login_url='/auth/login')
+@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_site(request):
 
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = SiteForm(request.POST)
         if form.is_valid():
@@ -86,9 +92,10 @@ def add_site(request):
 
     return render(request, 'add_site.html', {'form': form})
 
+@login_required(login_url='/auth/login')
+@user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_accommodation(request):
 
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = AccommodationForm(request.POST)
         if form.is_valid():

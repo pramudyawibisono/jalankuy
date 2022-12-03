@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 import main.urls as main
 import authentication.urls as auth
-import profil.urls as profil
 import manageData.urls as manageData
 
 urlpatterns = [
@@ -25,5 +24,4 @@ urlpatterns = [
     path('', include(main)),
     path('', include(manageData)),
     path('auth/', include(auth)),
-    path('profile/', include(profil)),
 ]

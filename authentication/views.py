@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.utils import IntegrityError
 from .helper.auth_user import authenticate_user
 from django.contrib.auth.decorators import login_required
+
+
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
@@ -39,10 +41,13 @@ def login_view(request):
             if user is not None:
                 print(user.username)
                 login(request, user)
+                if user.is_superuser:
+                    return HttpResponseRedirect("/admin_home")
                 return HttpResponseRedirect("/")
             else:
                 context.get("errors", []).append("email atau password anda salah")
     return render(request, "login.html", context)
+
 def register_view(request):
     register_form = RegisterForm(request.POST or None, request.FILES or None)
     context = {
