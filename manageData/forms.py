@@ -7,7 +7,7 @@ class DestinationAreaForm(forms.Form):
         'id' : 'province',
         'placeholder' : 'Enter the province HERE'
     }
-    province = forms.CharField(label="", required=True, widget=forms.Textarea(attrs=province_attrs))
+    province = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=province_attrs))
 
     city_attrs = {
         'type' : 'text',
@@ -15,7 +15,7 @@ class DestinationAreaForm(forms.Form):
         'id' : 'city',
         'placeholder' : 'Enter the city HERE'
     }
-    city = forms.CharField(label="", required=True, widget=forms.Textarea(attrs=city_attrs))
+    city = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=city_attrs))
 
     desc_attrs = {
         'type' : 'text',
@@ -31,7 +31,7 @@ class DestinationAreaForm(forms.Form):
         'id' : 'pic',
         'placeholder' : 'Enter picture link HERE'
     }
-    pic = forms.CharField(label="", required=False, widget=forms.Textarea(attrs=pic_attrs))
+    pic = forms.CharField(label="", required=False, widget=forms.TextInput(attrs=pic_attrs))
 
 
 class SiteForm(forms.Form):
@@ -49,7 +49,7 @@ class SiteForm(forms.Form):
         'id' : 'name',
         'placeholder' : 'Enter site name HERE'
     }
-    name = forms.CharField(label="", required=True, widget=forms.Textarea(attrs=name_attrs))
+    name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=name_attrs))
 
     desc_attrs = {
         'type' : 'text',
@@ -65,7 +65,7 @@ class SiteForm(forms.Form):
         'id' : 'pic',
         'placeholder' : 'Enter picture link HERE'
     }
-    pic = forms.CharField(label="", required=False, widget=forms.Textarea(attrs=pic_attrs))
+    pic = forms.CharField(label="", required=False, widget=forms.TextInput(attrs=pic_attrs))
 
 class AccommodationForm(forms.Form):
     dest_area_attrs = {
@@ -82,7 +82,7 @@ class AccommodationForm(forms.Form):
         'id' : 'name',
         'placeholder' : 'Enter site name HERE'
     }
-    name = forms.CharField(label="", required=True, widget=forms.Textarea(attrs=name_attrs))
+    name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=name_attrs))
 
     desc_attrs = {
         'type' : 'text',
@@ -98,7 +98,7 @@ class AccommodationForm(forms.Form):
         'id' : 'pic',
         'placeholder' : 'Enter picture link HERE'
     }
-    pic = forms.CharField(label="", required=False, widget=forms.Textarea(attrs=pic_attrs))
+    pic = forms.CharField(label="", required=False, widget=forms.TextInput(attrs=pic_attrs))
     
     price_attrs = {
         'type' : 'number',

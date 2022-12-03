@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'manageData',
-    'accommodation',
 ]
 
 MIDDLEWARE = [

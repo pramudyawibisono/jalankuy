@@ -19,48 +19,31 @@ def execute_query(query):
     return result
 
 def home_admin(request):
-    with connection.cursor() as cursor:
-        cursor.execute(
-            f"SELECT * FROM ADMIN;")
-        result = namedtuplefetchall(cursor)
-        print(result)
+
+    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     return render(request, 'home_admin.html')
 
-def view_destination_area(request):
+def view_all_list(request, idcommand):
+
     #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
-    query = f"SELECT * FROM DESTINATION_AREA"
-    destination_area_list = execute_query(query)
-    # print(accommodation_list) # debug
+    if (idcommand=="destination-area"):
+        saved_values = ["Destination Area", "Provinsi", "Kota", "add-"+idcommand]
+        item_list = execute_query(f"SELECT * FROM DESTINATION_AREA")
+    elif (idcommand=="site"):
+        saved_values = ["Site", "Destination Area ID", "Nama", "add-"+idcommand]
+        item_list = execute_query(f"SELECT * FROM SITE")
+    elif (idcommand=="accommodation"):
+        saved_values = ["Accommodation", "Destination Area ID", "Nama", "add-"+idcommand]
+        item_list = execute_query(f"SELECT * FROM ACCOMMODATION")
+    else:
+        return home_admin(request)
+    
+    context = {'item_list':item_list, 'saved_values':saved_values}
 
-    context = {'destination_area_list': destination_area_list}
-    print(context) # debug
-
-    return render(request, 'destination_area_list.html', context)
-
-def view_site(request):
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
-    query = f"SELECT * FROM SITE"
-    site_list = execute_query(query)
-    # print(accommodation_list) # debug
-
-    context = {'site_list': site_list}
-    print(context) # debug
-
-    return render(request, 'site_list.html', context)
-
-
-def view_accommodation(request):
-    #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
-    query = f"SELECT * FROM ACCOMMODATION"
-    accommodation_list = execute_query(query)
-    # print(accommodation_list) # debug
-
-    context = {'accommodation_list': accommodation_list}
-    print(context) # debug
-
-    return render(request, 'accommodation_list.html', context)
+    return render(request, 'admin_all_list.html', context)
 
 def add_destination_area(request):
+
     #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = DestinationAreaForm(request.POST)
@@ -74,6 +57,7 @@ def add_destination_area(request):
             with connection.cursor() as cursor:
                 cursor.execute(query)
             print(f"Sukses menambahkan destination area") # debug
+
             return HttpResponseRedirect(f'view-destination-area')
     else:
         form = DestinationAreaForm()
@@ -81,6 +65,7 @@ def add_destination_area(request):
     return render(request, 'add_destination_area.html', {'form': form})
 
 def add_site(request):
+
     #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = SiteForm(request.POST)
@@ -94,6 +79,7 @@ def add_site(request):
             with connection.cursor() as cursor:
                 cursor.execute(query)
             print(f"Sukses menambahkan site") # debug
+
             return HttpResponseRedirect(f'view-site')
     else:
         form = SiteForm()
@@ -101,6 +87,7 @@ def add_site(request):
     return render(request, 'add_site.html', {'form': form})
 
 def add_accommodation(request):
+
     #TODO Cek udah login atau belum. Kalo belum, redirect ke login page
     if request.method == 'POST':
         form = AccommodationForm(request.POST)
@@ -115,6 +102,7 @@ def add_accommodation(request):
             with connection.cursor() as cursor:
                 cursor.execute(query)
             print(f"Sukses menambahkan accommodation") # debug
+
             return HttpResponseRedirect(f'view-accommodation')
     else:
         form = AccommodationForm()
