@@ -29,9 +29,9 @@ class EditProfileForm(forms.ModelForm):
                 'aria-describedby':'inputGroupPrepend',
                 }
             ),
-            'photo' : forms.TextInput(
+            'photo' : forms.FileInput(
                 attrs={
-                'type' : 'file',
+                "accept":"image/*",
                 'placeholder' : 'Masukan profile foto Anda',
                 'class':'form-control',
                 'aria-describedby':'inputGroupPrepend',
