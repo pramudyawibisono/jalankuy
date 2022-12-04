@@ -10,7 +10,18 @@
   {% endblock style %}
     
   {% block content %}
-  <div class="position-absolute top-50 start-50 translate-middle">
+  <div class="position-absolute top-0 start-50 translate-middle-x" style="z-index:100;">
+    {% if errors %} 
+      {% for error in errors %}
+      <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem;width: 35rem" role="alert">
+        <svg class="bi flex-shrink-0 me-2" style="width:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+          {{error}}
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %} 
+    {% endif %} 
     {% if success %}
       {% comment %} alert('Sukses menyimpan perubahan'); {% endcomment %}
       <div class="alert alert-success d-flex align-items-center m-3 alert-dismissible fade show" style="height:3.5rem" role="alert">
@@ -21,6 +32,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     {% endif %}
+  </div>
+  <div class="position-absolute top-50 start-50 translate-middle">
+  
     <div class="card m-3" style="width: 35rem;">
 
       <div class="card-body">
@@ -51,11 +65,11 @@
     {% endblock content %}
 
   {% block javascript %}
-    {% if errors %}
+    {% comment %} {% if errors %}
       {% for error  in errors %}
         alert('{{error}}');
       {% endfor %}
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     {% comment %} {% if success %}
       alert('Sukses menyimpan perubahan');
