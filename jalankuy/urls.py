@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import main.urls as main
+import authentication.urls as auth
 import manageData.urls as manageData
-import accommodation.urls as accommodation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(main)),
     path('', include(manageData)),
-    path('', include(accommodation)),
+    path('auth/', include(auth)),
 ]
