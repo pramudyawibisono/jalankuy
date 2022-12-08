@@ -32,13 +32,19 @@ def view_all_list(request, idcommand):
 
     if (idcommand=="destination-area"):
         saved_values = ["Destination Area", "Provinsi", "Kota", "add-"+idcommand]
-        item_list = execute_query(f"SELECT * FROM DESTINATION_AREA")
+        item_list = execute_query("SELECT * FROM DESTINATION_AREA")
     elif (idcommand=="site"):
-        saved_values = ["Site", "Destination Area ID", "Nama", "add-"+idcommand]
-        item_list = execute_query(f"SELECT * FROM SITE")
+        saved_values = ["Site", "Destination Area", "Nama", "add-"+idcommand]
+        item_list = execute_query("""SELECT DISTINCT SITE.id, SITE.destareaid, SITE.name, 
+        SITE.description, SITE.image, DESTINATION_AREA.province, DESTINATION_AREA.name
+        FROM SITE, DESTINATION_AREA WHERE SITE.destareaid = DESTINATION_AREA.id""")
+        print(item_list)
     elif (idcommand=="accommodation"):
-        saved_values = ["Accommodation", "Destination Area ID", "Nama", "add-"+idcommand]
-        item_list = execute_query(f"SELECT * FROM ACCOMMODATION")
+        saved_values = ["Accommodation", "Destination Area", "Nama", "add-"+idcommand]
+        item_list = execute_query("""SELECT DISTINCT ACCOMMODATION.id, ACCOMMODATION.destareaid, ACCOMMODATION.name, 
+        ACCOMMODATION.description, ACCOMMODATION.image, DESTINATION_AREA.province, DESTINATION_AREA.name, ACCOMMODATION.price
+        FROM ACCOMMODATION, DESTINATION_AREA WHERE ACCOMMODATION.destareaid = DESTINATION_AREA.id""")
+        print(item_list)
     else:
         return home_admin(request)
     
@@ -73,10 +79,13 @@ def add_destination_area(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_site(request):
 
+    item_list = execute_query("""SELECT DISTINCT DESTINATION_AREA.id, DESTINATION_AREA.province, DESTINATION_AREA.name 
+    FROM SITE, DESTINATION_AREA WHERE DESTINATION_AREA.id IN (SELECT destareaid FROM SITE)""")
+
     if request.method == 'POST':
-        form = SiteForm(request.POST)
+        form = SiteForm(item_list, request.POST)
         if form.is_valid():
-            dest_area = int(form.cleaned_data['dest_area'])
+            dest_area = form.cleaned_data['dest_area']
             name = form.cleaned_data['name']
             desc = form.cleaned_data['desc']
             pic = form.cleaned_data['pic']
@@ -88,7 +97,7 @@ def add_site(request):
 
             return HttpResponseRedirect(f'view/site')
     else:
-        form = SiteForm()
+        form = SiteForm(item_list)
 
     return render(request, 'add_site.html', {'form': form})
 
@@ -96,10 +105,13 @@ def add_site(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_accommodation(request):
 
+    item_list = execute_query("""SELECT DISTINCT DESTINATION_AREA.id, DESTINATION_AREA.province, DESTINATION_AREA.name 
+    FROM ACCOMMODATION, DESTINATION_AREA WHERE DESTINATION_AREA.id IN (SELECT destareaid FROM ACCOMMODATION)""")
+
     if request.method == 'POST':
-        form = AccommodationForm(request.POST)
+        form = AccommodationForm(item_list, request.POST)
         if form.is_valid():
-            dest_area = int(form.cleaned_data['dest_area'])
+            dest_area = form.cleaned_data['dest_area']
             name = form.cleaned_data['name']
             desc = form.cleaned_data['desc']
             pic = form.cleaned_data['pic']
@@ -112,6 +124,6 @@ def add_accommodation(request):
 
             return HttpResponseRedirect(f'view/accommodation')
     else:
-        form = AccommodationForm()
+        form = AccommodationForm(item_list)
 
     return render(request, 'add_accommodation.html', {'form': form})

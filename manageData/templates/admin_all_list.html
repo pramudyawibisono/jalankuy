@@ -42,6 +42,10 @@
                 <tr>
                     <th>No.</th>
                     <th>{{saved_values.1}}</th>
+                    <!-- {% if saved_values.0 != "Destination Area" %}
+                        <th>Provinsi</th>
+                        <th>Kota</th>
+                    {% endif %} -->
                     <th>{{saved_values.2}}</th>
                     <th>Deskripsi</th>
                     <th>Gambar</th>
@@ -55,7 +59,9 @@
                 {% for item in item_list %}
                 <tr>
                     <td>{{forloop.counter}}.</td>
-                    <td>{{item.1}}</td>
+                    <td>{{item.1}}{% if saved_values.0 != "Destination Area" %}, {{item.5}}, {{item.6}}
+                    {% endif %}
+                    </td>
                     <td>{{item.2}}</td>
                     <td>{{item.3}}</td>
                     {% if item.4 != "" %}
@@ -67,7 +73,7 @@
                         <td>No Image Found</td>
                     {% endif %}
                     {% if saved_values.0 == "Accommodation" %}
-                        <td>{{item.5}}</td>
+                        <td>{{item.7}}</td>
                     {% endif %}
                     <!-- <td>
                         <button onclick="location.href = '/destination-area/{{item.1}}/accommodations/{{item.0}}';"> Lihat Detail </button>
