@@ -15,6 +15,9 @@ from pathlib import Path
 
 import dj_database_url
 
+import cloudinary
+import cloudinary_storage
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'main',
     'authentication',
     'profil'
@@ -175,3 +180,11 @@ EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
 EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
 EMAIL_PORT = '587'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dqsmevdee',
+    'API_KEY': '597513665331951',
+    'API_SECRET': 'qLKR9S67y-QlGD9y86o6F-pmMg0'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
