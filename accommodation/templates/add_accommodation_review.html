@@ -58,30 +58,24 @@
 {% endblock meta %}
 
 {% block content %}
-    <center>
+    <!-- <center> -->
+    <div class="w-50 p-3">
         <h1>Buat review akomodasi</h1>
-        <div class="container">
-            <form method="post">
-                {% csrf_token %}
-                <div class="div-score">
-                    <div>
-                        <label for="score">Score</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.score }}
-                    </div>
-                </div>
-                <div class="div-comment">
-                    <div>
-                        <label for="comment">Comment</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.comment }}
-                    </div>
-                </div>
-                
-                <input type="submit" value="Simpan Review">
-            </form>
-        </div>
-    </center>
+        <h2>{{infos.0}}, {{infos.1}}, {{infos.2}}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group mb-3 w-25">
+                <label for="score" class="form-label">Rating</label>
+                {{ form.score }}
+            </div>
+            <div class="form-group mb-3">
+                <label for="comment" class="form-label">Komentar</label>
+                {{ form.comment }}
+            </div>
+            <div class="form-group col-12">
+                <button type="submit" class="btn btn-primary">Simpan Review</button>
+            </div>
+        </form>
+    </div>
+    <!-- </center> -->
 {% endblock content %}
