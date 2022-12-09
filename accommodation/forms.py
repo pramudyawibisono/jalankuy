@@ -20,7 +20,7 @@ class AccommodationReviewForm(forms.Form):
         'name':'comment',
         'id': 'comment',
         'rows': '7',
-        'placeholder':'Write your comment here...'
+        'placeholder':'Write your review here...'
     }
 
     comment = forms.CharField(label="",required=True,
