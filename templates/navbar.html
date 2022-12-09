@@ -1,0 +1,22 @@
+<style>
+    /* .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #F8F9FA;
+    } */
+
+    .navbar, .navbar:hover {
+      background-color: #AAD969 !important;
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-light bg-info p-2 d-flex justify-content-between">
+        <a class="navbar-brand" href="/">
+          <strong style="color:#5C55E1">JalanKuy</strong>
+        </a>
+        <div class="container">
+          Hi, user! <a href="{% url 'logout' %}"> Logout </a>
+        </div>
+    </nav>
+</header>
