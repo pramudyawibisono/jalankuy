@@ -1,45 +1,36 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block meta %}
-    <title>Add Site Review</title>
-    <style>
-        .btn-primary, .btn-primary:hover {
-            background-color: #AAD969 !important;
-        }
-    </style>
-{% endblock meta %}
-
-{% block content %}
-    <!-- {% include 'navbar.html' %} -->
-    <center>
-        <div class="w-50 p-3">
-            <!-- <h1 class="pt-4" style="color:#5C55E1"><strong>Buat Review</strong></h1> -->
-            
-            <h2 class="pt-4 p-2" align="left">
-                <strong style="color:#5C55E1">{{infos.0}},</strong>
-                <strong style="color:#AAD969">{{infos.1}}, {{infos.2}}</strong></h2>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group mb-3 d-flex">
-                    <div class="p-2">
-                        <label style="color:#AAD969" for="score" class="form-label">
-                            <strong>Rating:</strong>
-                        </label>
-                    </div>
-                    <div class="p-2">
-                        {{ form.score }}
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    {{ form.comment }}
-                </div>
-                <div class="form-group col-12" align="right">
-                    <button type="submit" class="btn btn-primary border border-white">
-                        <strong style="color:#5C55E1"> Submit </strong>
-                    </button>
-                </div>
-            </form>
+{% extends 'main.html' %} {% load static %} {% block meta %}
+<title>Add Site Review</title>
+<link
+  rel="stylesheet"
+  href="{% static 'css/site_review.css' %}"
+/>
+{% endblock meta %} {% block content %}
+<center>
+  <div class="container mx-50">
+    <div class="w-50 p-3">
+      <!-- <h1 class="pt-4" style="color:#5C55E1"><strong>Buat Review</strong></h1> -->
+      <h2 class="pt-4 p-2" align="left">
+        <strong style="color: #5c55e1">{{infos.0}},</strong>
+        <strong style="color: #aad969">{{infos.1}},{{infos.2}}</strong>
+      </h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mb-3 d-flex">
+          <div class="p-2">
+            <label style="color: #aad969" for="score" class="form-label">
+              <strong>Rating:</strong>
+            </label>
+          </div>
+          <div class="p-2">{{ form.score }}</div>
         </div>
-    </center>
+        <div class="form-group mb-3">{{ form.comment }}</div>
+        <div class="form-group col-12" align="right">
+          <button type="submit" class="btn btn-primary border border-white">
+            <strong style="color: #5c55e1"> Submit </strong>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</center>
 {% endblock content %}
