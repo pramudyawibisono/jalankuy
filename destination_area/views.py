@@ -67,6 +67,15 @@ def add_destination_area_review(request, id):
             # print(f"Sukses menambahkan review") # debug
             return HttpResponseRedirect(f'/{id}')
     else:
+        query = f'''
+        SELECT DA.name destareaname, DA.province FROM DESTINATION_AREA DA WHERE DA.id = {id};
+        '''
+        infos = execute_query(query)
         form = DestinationAreaReviewForm()
 
-    return render(request, 'add_destination_area_review.html', {'form': form})
+    context = {
+        'infos': infos[0],
+        'form': form
+    }
+
+    return render(request, 'add_destination_area_review.html', context)
