@@ -76,7 +76,7 @@ class AccommodationForm(forms.Form):
         'type' : 'text',
         'name' : 'name',
         'id' : 'name',
-        'placeholder' : 'Enter site name HERE'
+        'placeholder' : 'Enter accommodation name HERE'
     }
     name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=name_attrs))
 
@@ -100,6 +100,7 @@ class AccommodationForm(forms.Form):
         'type' : 'number',
         'name' : 'price',
         'id' : 'price',
-        'min': '0'
+        'min': '0',
+        'placeholder' : 'Enter price HERE'
     }
-    price = forms.IntegerField(min_value=0, label='', required=True, widget=forms.NumberInput(attrs=price_attrs))
+    price = forms.IntegerField(min_value=0, label="", required=True, widget=forms.NumberInput(attrs=price_attrs))

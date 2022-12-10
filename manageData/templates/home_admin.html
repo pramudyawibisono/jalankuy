@@ -4,6 +4,18 @@
 {% block meta %}
 <title>Admin: Dashboard</title>
 <style>
+    body{
+        margin-top: 75 !important;
+        padding:10px;
+        font-family: "Poppins";
+    }
+    .button {
+        background-color: #aad969;
+        border: 1px solid #5C55E1;
+        color: #5C55E1;
+        font-size: 25px;
+        margin: 10px;
+    }
     table,
     th,
     td {
@@ -29,14 +41,35 @@
         text-align: center;
         margin-bottom: 30px;
         margin-top: 20px;
+        padding-top: 30px;
+    }
+
+    .gtext {
+        color: #aad969;
+    }
+
+    .cont-but {
+        margin: 10px;
     }
 </style>
 {% endblock meta %}
 
 {% block content %}
-<div class="container"> <h1>JalanKuy - Home Admin</h1> </div>
-<div class="container"> <p>Ini adalah halaman utama untuk admin aplikasi JalanKuy</p> </div>
-<div class="container"> <button onclick="location.href = '/admin_home/view/destination-area';"> Lihat Destination Area </button> </div>
-<div class="container"> <button onclick="location.href = '/admin_home/view/site';"> Lihat Site </button> </div>
-<div class="container"> <button onclick="location.href = '/admin_home/view/accommodation';"> Lihat Accommodation </button> </div>
+<div class="container-utama"> 
+    <div class="container">
+        <h1><strong>JalanKuy - Home Admin</strong></h1>
+    </div>
+    <h1><strong style="color:#5C55E1">Selamat datang, <strong style="color:#aad969">{{ user }}</strong>!</strong></h1>
+    <div class="cont-but">
+        <button class="button" onclick="location.href = '/admin_home/view/destination-area';"> Lihat Destination Area </button>
+        <button class="button" onclick="location.href = '/admin_home/view/site';"> Lihat Site </button>
+        <button class="button" onclick="location.href = '/admin_home/view/accommodation';"> Lihat Accommodation </button>
+    </div>
+    <div class="cont-but">
+        <button class="button" onclick="location.href = '/admin_home/add-destination-area';"> Add Destination Area
+        </button>
+        <button class="button" onclick="location.href = '/admin_home/add-site';"> Add Site </button>
+        <button class="button" onclick="location.href = '/admin_home/add-accommodation';"> Add Accommodation </button>
+    </div>
+</div>
 {% endblock content %}

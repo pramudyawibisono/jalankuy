@@ -1,4 +1,12 @@
 <style>
+    body{
+        margin-top: 75 !important;
+        padding:10px;
+        font-family: "Poppins";
+    }
+    .header{
+        background-size: 100%;
+    }
     .navbar,
     .navbar:hover {
         background-color: #AAD969 !important;
@@ -6,6 +14,7 @@
 </style>
 
 <header>
+<section class="header fixed-top">
     <nav class="navbar navbar-light bg-info p-2 d-flex justify-content-between">
 
         <div class="btn-group">
@@ -17,6 +26,9 @@
                 aria-haspopup="true" aria-expanded="false">
             </button>
             <div class="dropdown-menu">
+                <a class="dropdown-item" href="/">Homepage</a>
+                <a class="dropdown-item" href="/admin_home">Admin Homepage</a>
+                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/admin_home/view/destination-area">View Destination Area</a>
                 <a class="dropdown-item" href="/admin_home/view/site">View Site</a>
                 <a class="dropdown-item" href="/admin_home/view/accommodation">View Accommodation</a>
@@ -25,16 +37,18 @@
                 <a class="dropdown-item" href="/admin_home/add-site">Add Site</a>
                 <a class="dropdown-item" href="/admin_home/add-accommodation">Add Accommodation</a>
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/profile">Profile</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
             </div>
         </div>
 
         <div class="btn-group text-right">
-            <strong style="color:#5C55E1"> Hi, {{ user }} ! </strong>
+            <strong style="color:#5C55E1"><sub> Hi, {{ user }} ! </sub></strong>
             <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
             </button>
             <div class="dropdown-menu">
+                <a class="dropdown-item" href="/profile">Profile</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
             </div>
         </div>
@@ -43,4 +57,5 @@
             <strong style="color:#5C55E1">Hi, {{ user }}! </strong><a href="{% url 'logout' %}">Logout </a>
         </div> -->
     </nav>
+</section>
 </header>
