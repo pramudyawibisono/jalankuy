@@ -68,8 +68,7 @@ def add_destination_area_review(request, id):
             return HttpResponseRedirect(f'/{id}')
     else:
         query = f'''
-        SELECT A.name accommname, DA.name destareaname, DA.province FROM DESTINATION_AREA DA, ACCOMMODATION A 
-        WHERE DA.id = {destareaid} AND A.id = {accommid} AND A.destareaid = DA.id;
+        SELECT DA.name destareaname, DA.province FROM DESTINATION_AREA DA WHERE DA.id = {id};
         '''
         infos = execute_query(query)
         form = DestinationAreaReviewForm()
@@ -79,4 +78,4 @@ def add_destination_area_review(request, id):
         'form': form
     }
 
-    return render(request, 'add_destination_area_review.html', {'form': form})
+    return render(request, 'add_destination_area_review.html', context)
