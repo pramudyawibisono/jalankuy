@@ -176,10 +176,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = '3871ffe84c2ca5'
 # EMAIL_PORT = '2525'
 
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
-EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
+EMAIL_HOST_PASSWORD = 'mhgdaqihiafywgab'
 EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 
 
 CLOUDINARY_STORAGE = {
