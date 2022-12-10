@@ -1,0 +1,24 @@
+{% extends 'auth_base.html' %}
+
+
+{% block title %}
+    JalanKuy
+{% endblock title %}
+
+
+{% block content %}
+  <div class="card m-5">
+    <div class="card-header">
+      Pesan dari JalanKuy
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Halaman yang ingin (atau sedang) anda akses membutuhkan akses login terlebih dahulu</h5>
+      <p class="card-text">Sepertinya barusan saja telah terjadi perubahan pada akun anda atau Sistem telah mengeluarkan anda dari sistem.</p>
+      <p class="card-text">Jika anda ingin masuk kembali, silahhkan menekan tombol <strong>login</strong> atau menekan tombol <strong>register</strong> jika anda belum mempunyai akun. </p>
+      <a href="{% url 'login_view' %}" name=""  class="btn btn-primary">Login</a>
+      <a href="{% url 'register_view' %}" class="btn btn-secondary">Register</a>
+    </div>
+  </div>
+{% endblock content %}
+    
+    

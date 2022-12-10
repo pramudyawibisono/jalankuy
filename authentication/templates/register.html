@@ -1,0 +1,48 @@
+{% extends 'auth_base.html' %}
+{% load static %} 
+{% block title %}Register{%endblock %} 
+{% block style %}
+<link rel="stylesheet" href="{% static 'profile/base.css' %}" />
+{% endblock style %} 
+{% block content %}
+<div class="position-absolute top-0 start-50 translate-middle-x" style="z-index:100;">
+  {% if errors %} 
+    {% for error in errors %}
+    <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem;width: 35rem" role="alert">
+      <svg class="bi flex-shrink-0 me-2" style="width:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        {{error}}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %} 
+  {% endif %} 
+</div>
+<div class="position-absolute top-50 start-50 translate-middle mb-5 pb-5 pt-5 mt-5">
+  <div class="card m-3 mt-4" style="width: 35rem">
+    <div class="card-body">
+      <div class="card-titile m-3">
+        <h4>JalanKuy | Register</h4>
+      </div>
+      <form action="" method="post"class="m-3">
+        {% csrf_token %}
+        {% for form in forms %}
+        <div class="mb-3">
+          <label for="{{form.id_for_label}}" class="form-label">{{form.label}}</label>
+          {{form}}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <div>Jika anda sudah punya akun silahkan <strong><a href="{% url 'login_view' %}">login</a></strong></div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+  {% comment %} {% if errors %}
+    {% for error  in errors %}
+      alert('{{error}}');
+    {% endfor %}
+  {% endif %} {% endcomment %}
+{% endblock javascript %}

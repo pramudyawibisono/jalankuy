@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Detail Site</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .tabel-reviews {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .container-atas {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}
+    {% if is_not_available %}
+
+    <h1>Data is not exist, please go back to site list page.</h1>
+    <button onclick="location.href = '/{{destareaid}}/sites';">
+        Site List
+   </button>
+
+    {% else %}
+    <center>
+        <div class="container-atas">
+            <h1>Halaman detail site</h1>
+            <h2>{{site.2}} - {{dest_area_name}}</h2>
+        </div>
+        
+        <div>
+            <strong>Deskripsi:</strong>
+            <p>{{site.3}}</p>
+        </div>
+
+        <div class="tabel-reviews">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Reviewer</th>
+                        <th>Komentar</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in reviews %}
+                    <tr>
+                        <td>{{forloop.counter}}.</td>
+                        <td>{{item.2}}</td>
+                        <td>{{item.4}}</td>
+                        <td>{{item.3}}.0</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="location.href = '{{ids.1}}/add-review';">
+             Buat Review 
+        </button>
+    </center>
+
+    {% endif %}
+{% endblock content %}

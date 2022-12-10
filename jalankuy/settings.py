@@ -37,6 +37,10 @@ APP_NAME = os.getenv('APP_NAME', '')
 
 ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{APP_NAME}.up.railway.app'
+]
+
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
@@ -51,7 +55,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'accommodation',
+    'siteapp',
+    'authentication',
     'destination_area',
+    'profil',
+    'manageData',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +160,9 @@ STATIC_URL = 'static/'
 # This shouldn't be included in your Git repository.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
@@ -163,9 +174,20 @@ for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
 
 # Enable compression and caching features of whitenoise.
 # You can remove this if it causes problems on your setup.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_HOST = 'smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'd0769862f95520'
+# EMAIL_HOST_PASSWORD = '3871ffe84c2ca5'
+# EMAIL_PORT = '2525'
+
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
+EMAIL_PORT = '587'

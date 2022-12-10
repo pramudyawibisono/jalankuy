@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import *
 
-app_name = 'main'
+app_name = 'destination_area'
 urlpatterns = [
     path('', destinations, name='destination-area'),
     path('<int:id>', destination_detail, name="destination-area-detail"),

@@ -1,0 +1,42 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Admin: Dashboard</title>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    th,
+    td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .tabel-daftar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .container-utama {
+        text-align: center;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+<div class="container"> <h1>JalanKuy - Home Admin</h1> </div>
+<div class="container"> <p>Ini adalah halaman utama untuk admin aplikasi JalanKuy</p> </div>
+<div class="container"> <button onclick="location.href = '/admin_home/view/destination-area';"> Lihat Destination Area </button> </div>
+<div class="container"> <button onclick="location.href = '/admin_home/view/site';"> Lihat Site </button> </div>
+<div class="container"> <button onclick="location.href = '/admin_home/view/accommodation';"> Lihat Accommodation </button> </div>
+{% endblock content %}

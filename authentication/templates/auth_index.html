@@ -1,0 +1,8 @@
+{% extends 'auth_base.html' %}
+
+{% block title %}Jalankuy{% endblock %}
+
+{% block content %}
+    <h1>Hii {{ user }}</h1>
+    <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}

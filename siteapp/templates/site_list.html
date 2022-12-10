@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Daftar Site</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .tabel-daftar-site {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-utama {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}
+    <div class="container-utama">
+        <h1><strong>Daftar Site di {{dest_area_name}}</strong></h1>
+    </div>
+    <div class="tabel-daftar-site">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Deskripsi</th>
+                    <th>Gambar</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in site_list %}
+                <tr>
+                    <td>{{forloop.counter}}.</td>
+                    <td>{{item.2}}</td>
+                    <td>{{item.3}}</td>
+                    <td>{{item.4}}</td>
+                    <td>
+                        <button onclick="location.href = '{{item.0}}';"> Lihat Detail </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

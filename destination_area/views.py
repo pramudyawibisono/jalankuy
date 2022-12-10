@@ -1,9 +1,8 @@
 from django.shortcuts import render
-
-# Create your views here.
-
+from django.contrib.auth.decorators import login_required
 from django.db import connection
 from collections import namedtuple
+from django.http import HttpResponseRedirect
 from .forms import *;
 
 # Create your views here.
@@ -20,6 +19,7 @@ def execute_query(query):
         result = cursor.fetchall()
     return result
 
+@login_required(login_url='/auth/login')
 def destinations(request):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM DESTINATION_AREA"
@@ -27,17 +27,18 @@ def destinations(request):
     # print(accommodation_list) # debug
 
     context = {'destination_area_list': destination_area_list}
-    print(context) # debug
+    # print(context) # debug
 
     return render(request, 'destination_area_list.html', context)
 
+@login_required(login_url='/auth/login')
 def destination_detail(request, id):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM DESTINATION_AREA WHERE ID = {id}"
     destination = execute_query(query)[0]
     # print(accommodation) # debug
 
-    query = f"SELECT * FROM DEST_AREA_REVIEW WHERE ID = {id};"
+    query = f"SELECT * FROM DEST_AREA_REVIEW WHERE destareaid = {id};"
     reviews = execute_query(query)
     # print(reviews) # debug
 
@@ -50,9 +51,10 @@ def destination_detail(request, id):
 
     return render(request, 'destination_area_detail.html', context)
 
+@login_required(login_url='/auth/login')
 def add_destination_area_review(request, id):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
-    reviewer = 'anonymous' # debug, dummy value 
+    reviewer = request.user
     if request.method == 'POST':
         form = DestinationAreaReviewForm(request.POST)
         if form.is_valid():
@@ -62,8 +64,8 @@ def add_destination_area_review(request, id):
                 DEFAULT, {id}, '{reviewer}', {score}, '{comment}');"
             with connection.cursor() as cursor:
                 cursor.execute(query)
-            print(f"Sukses menambahkan review") # debug
-            return HttpResponseRedirect(f'/destination-area/{id}')
+            # print(f"Sukses menambahkan review") # debug
+            return HttpResponseRedirect(f'/{id}')
     else:
         form = DestinationAreaReviewForm()
 

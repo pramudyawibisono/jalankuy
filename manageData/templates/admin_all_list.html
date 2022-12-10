@@ -1,0 +1,80 @@
+{% extends 'base_admin.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Daftar {{saved_values.0}}</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .tabel-daftar {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-utama {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+    </style>
+{% endblock meta %}
+
+{% block content %}
+    <div class="container-utama">
+        <h1><strong>Daftar {{saved_values.0}}</strong></h1>
+        <div class="container"> <button onclick="location.href = '/admin_home';"> Kembali </button> </div>
+        <div class="container"> <button onclick="location.href = '/admin_home/{{saved_values.3}}';"> Tambah {{saved_values.0}} </button></div>
+    </div>
+    <div class="tabel-daftar">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>{{saved_values.1}}</th>
+                    <th>{{saved_values.2}}</th>
+                    <th>Deskripsi</th>
+                    <th>Gambar</th>
+                    {% if saved_values.0 == "Accommodation" %}
+                        <th>Harga</th>
+                    {% endif %}
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in item_list %}
+                <tr>
+                    <td>{{forloop.counter}}.</td>
+                    <td>{{item.1}}</td>
+                    <td>{{item.2}}</td>
+                    <td>{{item.3}}</td>
+                    {% if item.4 != "" %}
+                        <td>
+                            <!-- <img src={{item.4}} alt="No Image" style="width:42px;height:42px;"> <br>  -->
+                            <a href={{item.4}}>{{item.4}}</a>
+                        </td>
+                    {% else %}
+                        <td>No Image Found</td>
+                    {% endif %}
+                    {% if saved_values.0 == "Accommodation" %}
+                        <td>{{item.5}}</td>
+                    {% endif %}
+                    <!-- <td>
+                        <button onclick="location.href = '/destination-area/{{item.1}}/accommodations/{{item.0}}';"> Lihat Detail </button>
+                    </td> -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
