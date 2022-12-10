@@ -20,6 +20,7 @@ def accommodations(request, destareaid):
 
     context = {'accommodation_list': accommodation_list, 'dest_area_name': dest_area_name}
 
+    context['user'] = str(request.user)
     return render(request, 'accommodation_list.html', context)
 
 
@@ -46,6 +47,7 @@ def accommodation_detail(request, destareaid, accommid):
         'ids': [destareaid, accommid]
         }
 
+    context['user'] = str(request.user)
     return render(request, 'accommodation_detail.html', context)
 
 
@@ -63,6 +65,17 @@ def add_accommodation_review(request, destareaid, accommid):
                 cursor.execute(query)
             return HttpResponseRedirect(f'/{destareaid}/accommodations/{accommid}')
     else:
+        query = f'''
+            SELECT A.name accommname, DA.name destareaname, DA.province FROM DESTINATION_AREA DA, ACCOMMODATION A 
+            WHERE DA.id = {destareaid} AND A.id = {accommid} AND A.destareaid = DA.id;
+            '''
+        infos = execute_query(query)
         form = AccommodationReviewForm()
 
-    return render(request, 'add_accommodation_review.html', {'form': form})
+    context = {
+        'infos': infos[0],
+        'form': form
+    }
+
+    context['user'] = str(request.user)
+    return render(request, 'add_accommodation_review.html', context)

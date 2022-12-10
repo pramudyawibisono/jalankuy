@@ -1,0 +1,72 @@
+.container {
+    margin-top: 150px;
+    padding: 0px;
+    margin-left: 0px;
+    color: #4f4f4f;
+    width: 100%;
+    padding: 0px;
+    left: 0px;
+  }
+  
+  .accommodationimage {
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+    border: 5px solid #aad969;
+    margin-top: 0px;
+    height: 450px;
+    margin-right: 100px;
+  }
+  
+  accommodation {
+    color: #aad969;
+    font-size: 50px;
+  }
+  
+  button {
+    background-color: #aad969;
+    color: #5c55e1;
+    border: none;
+    padding: 8px;
+    width: 250px;
+    text-align: left;
+  }
+  
+  .review {
+    background-color: #aad969;
+    border-top: 3px solid #5c55e1;
+    width: 100%;
+    margin-top: 0px;
+    padding:10px;
+  }
+  
+  rvw {
+      margin-top:30px;
+    color: #5c55e1;
+    font-size: 50px;
+    margin-bottom: 0px;
+  }
+  
+  .reviewbox {
+    background-color: white;
+    padding: 0px;
+    width: 90%;
+    margin:30px;
+    color: #4f4f4f;
+  }
+  
+  .rating {
+    background-color: #5c55e1;
+    width: 100%;
+    text-align: right;
+    color: #aad969;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  username {
+    color: #5c55e1;
+    font-size: 40px;
+    line-height: 20px;
+    font-weight: 700;
+  }
+  

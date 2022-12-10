@@ -1,0 +1,39 @@
+
+.destination {
+  border-radius: 5%;
+  padding: 10px;
+  width: 300px;
+  height: 250px;
+  background-color: gray;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: white;
+  color: transparent;
+  font-size: 70px;
+  letter-spacing: 0;
+  margin: 2vh;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.destination:hover {
+  margin-top: 2px;
+  transition: 0.5s;
+}
+
+.carousel-item {
+  height: 100vh;
+  background: no-repeat scroll center scroll;
+}
+
+.carousel-caption {
+  bottom: 20%;
+  font-size: 5vw;
+}
+
+.carousel-caption green {
+  color: #aad969;
+}
+
+.carousel-caption subcaption {
+  font-size: 2vw;
+}

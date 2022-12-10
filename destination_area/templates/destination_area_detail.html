@@ -1,75 +1,44 @@
-{% extends 'base.html' %} {% load static %} {% block meta %}
+{% extends 'main.html' %} {% load static %} {% block meta %}
+<link rel="stylesheet" href="{% static 'css/destination_area_detail.css' %}" />
 <title>Detail Destination Area</title>
-<style>
-  table,
-  th,
-  td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
-  }
-
-  th,
-  td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .tabel-reviews {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-
-  .container-atas {
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 20px;
-  }
-</style>
 {% endblock meta %} {% block content %}
-<center>
-  <div class="container-atas">
-    <h1>Halaman detail Destination Area</h1>
-    <h2>{{dest_area.2}}</h2>
+<div class="container">
+  <div class="d-flex flex-row">
+    <div class="col">
+      <div
+        class="destimage"
+        style="background-image: url('{{dest_area.4}}'); background-size:cover; background-repeat:no-repeat;"
+      ></div>
+    </div>
+    <div class="col">
+      <destination><strong>{{dest_area.2}}</strong></destination>
+      <p>{{dest_area.3}}</p>
+      <button onclick="location.href = '{{id}}/sites';">View Sites ></button>
+      <button onclick="location.href = '{{id}}/accommodations';">
+        View Accomodations >
+      </button>
+      <button onclick="location.href = '{{id}}/add-review';">
+        Add Review >
+      </button>
+    </div>
   </div>
-
-  <div>
-    <strong>Deskripsi:</strong>
-    <p>{{dest_area.3}}</p>
+</div>
+<rvw><strong>Review</strong></rvw>
+<div class="review align-items-center justify-content-center">
+  {% for item in reviews %}
+  <div class="reviewbox align-self-center">
+    <div class="rating">Rating: {{item.3}}/5</div>
+    <div class="row">
+      <div class="col">
+        <img src="{% static 'images/Reviewer.png' %}" />
+      </div>
+      <div class="col-10 px-25">
+        <div style="color: #5c55e1">Posted by</div>
+        <username>{{item.2}}</username>
+        <p>{{item.4}}</p>
+      </div>
+    </div>
   </div>
-
-  <div class="tabel-reviews">
-    <table>
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>Reviewer</th>
-          <th>Komentar</th>
-          <th>Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in reviews %}
-        <tr>
-          <td>{{ forloop.counter }}.</td>
-          <td>{{item.2}}</td>
-          <td>{{item.4}}</td>
-          <td>{{item.3}}.0</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-
-  <button onclick="location.href = '{{id}}/add-review';">Buat Review</button>
-  <button onclick="location.href = '{{id}}/sites';">
-    Lihat Situs di Area ini
-  </button>
-  <button onclick="location.href = '{{id}}/accommodations';">
-    Lihat Akomodasi di Area ini
-  </button>
-</center>
+  {% endfor %}
+</div>
 {% endblock content %}

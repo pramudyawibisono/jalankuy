@@ -15,6 +15,9 @@ from pathlib import Path
 
 import dj_database_url
 
+import cloudinary
+import cloudinary_storage
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -53,6 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'cloudinary_storage',
     'main',
     'accommodation',
     'siteapp',
@@ -154,7 +159,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 # This is the directory for storing `collectstatic` results.
 # This shouldn't be included in your Git repository.
@@ -187,7 +192,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST_PASSWORD = '3871ffe84c2ca5'
 # EMAIL_PORT = '2525'
 
-EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'abdul.rahman.saja2002@gmail.com'
-EMAIL_HOST_PASSWORD = 'CIFAJZ7RatjPbBcm'
+EMAIL_HOST_PASSWORD = 'mhgdaqihiafywgab'
 EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dqsmevdee',
+    'API_KEY': '597513665331951',
+    'API_SECRET': 'qLKR9S67y-QlGD9y86o6F-pmMg0'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

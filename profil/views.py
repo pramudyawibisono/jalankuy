@@ -14,6 +14,7 @@ def edit_profile(request):
     context = {
         "errors": [],
         "success": False,
+        "pop_index": -1
     }
     if request.method == "POST":
         try:
@@ -26,7 +27,11 @@ def edit_profile(request):
                 context["success"] = True
         except Exception as e:
             print("Error Terjadi\n\t",e)
-            context.get("errors", []).append(str(e))
+            if "cloudinary" in str(e):
+                context.get("errors", []).append("Gagal mengupload gambar ke cloud. Silahkan cek koneksi anda")
+            else:
+                context.get("errors", []).append(str(e))
+        context["pop_index"] -= 1
     else:
         form = EditProfileForm()
     context["forms"] = form
@@ -54,6 +59,7 @@ def edit_password(request):
     context = {
         "errors": [],
         "success": False,
+        "pop_index" : -1
     }
     if request.method == 'POST':
         userAccount = UserAccount.objects.get(username=str(request.user))
@@ -77,10 +83,11 @@ def edit_password(request):
                     user.save()
                     context["success"] = True
                     logout(request)
-                    return HttpResponseRedirect("/auth/login")
+                    return HttpResponseRedirect("/auth/")
             except Exception as e:
                 print(e)
                 context.get("errors", []).append(str(e))
+        context["pop_index"] -= 1
     else:
         form = EditPasswordForm()
     context["forms"] = form
@@ -91,7 +98,8 @@ def lupa_password(request):
     context = {
         "errors": [],
         "success": False,
-        "email" : request.user.email
+        "email" : request.user.email,
+        "pop_index" : -1
     }
     if request.method == "POST":
         try:
@@ -106,5 +114,9 @@ def lupa_password(request):
         except  smtplib.SMTPException as err:
             context.get("errors", []).append(str(err))
         except Exception as e:
-            context.get("errors", []).append(str(e))
+            if "getaddrinfo" in str(e):
+                context.get("errors", []).append("Gagal mengirimkan password ke email. Silahkan cek koneksi anda")
+            else:
+                context.get("errors", []).append(str(e))
+        context["pop_index"] -= 1
     return render(request, "lupa_password.html", context)

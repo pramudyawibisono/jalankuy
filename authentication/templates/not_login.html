@@ -1,10 +1,13 @@
 {% extends 'auth_base.html' %}
-
+{% load static %}
 
 {% block title %}
     JalanKuy
 {% endblock title %}
 
+{% block style %}
+<link rel="stylesheet" href="{% static 'auth/css/style.css' %}" />
+{% endblock style %} 
 
 {% block content %}
   <div class="card m-5">

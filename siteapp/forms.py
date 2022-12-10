@@ -4,6 +4,7 @@ class SiteReviewForm(forms.Form):
 
     score_attrs = {
         'type':'number',
+        'class': 'form-control',
         'name':'score',
         'id':'score',
         'min': '0',
@@ -15,9 +16,11 @@ class SiteReviewForm(forms.Form):
 
     comment_attrs = {
         'type':'text',
+        'class': 'form-control',
         'name':'comment',
         'id': 'comment',
-        'placeholder':'Write your comment here..'
+        'rows': '7',
+        'placeholder':'Write your review here...'
     }
 
     comment = forms.CharField(label="",required=True,

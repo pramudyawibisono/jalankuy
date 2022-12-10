@@ -1,16 +1,18 @@
 {% extends 'auth_base.html' %} 
 {% load static %} 
-{% block title %}Login{%endblock %} 
+{% block title %}Login{%endblock title %} 
 {% block style %}
-<link rel="stylesheet" href="{% static 'profile/base.css' %}" />
+<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="{% static 'auth/css/style.css' %}" />
 {% endblock style %} 
 {% block content %}
 {% comment %} <div class="position-absolute top-50 end-0 translate-middle-y me-5 pe-5"> {% endcomment %}
   <div class="position-absolute top-0 start-50 translate-middle-x">
     {% if errors %} 
       {% for error in errors %}
-      <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem;width: 30rem" role="alert">
-        <svg class="bi flex-shrink-0 me-2" style="width:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="min-height:3.5rem" role="alert">
+        <svg class="bi flex-shrink-0 me-2" style="width:1rem; height:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
         <div>
           {{error}}
         </div>
@@ -21,28 +23,70 @@
   </div>
     
     <div class="position-absolute top-50 start-50 translate-middle">
-  <div class="card m-3" style="width: 30rem">
+  <div class="card m-3" style="width: 25rem; background-color:rgba(255, 255, 255, 0.2)">
     <div class="card-body">
       <div class="card-titile m-3">
-        <h4>JalanKuy | Login</h4>
+        <span style="color:#5c55e1;">
+          <h2 style="display:inline-block;">Jalan</h2><h2 style="color:#aad969;display:inline-block;">Kuy</h2>
+        </span>
+         {% comment %} ganti dengan logo kalau udah ada{% endcomment %}
+        <h4>Login ke akun anda</h4>
       </div>
       <form action="" method="post" class="m-3">
         {% csrf_token %} {% for form in forms %}
         <div class="mb-3">
           <label for="{{form.id_for_label}}" class="form-label">{{form.label}}</label>
+          {% if form.label == 'Password' %}
+         <div class="input-group mb-3">
+          
           {{form}}
+          <div class="input-group-text" style="background-color:rgba(255, 255, 255, 0.5)">
+            <a href=""><i class="bi bi-eye-slash" 
+              id="togglePassword" aria-hidden="true"></i></a>
+            </div> 
+            </div> 
+            {% else %}
+            {{form}}
+            {% endif %}
+
+            
         </div>
         {% endfor %}
+        <div class="d-grid gap-2 mt-4 mb-4">
         <button type="submit" class="btn btn-primary">Login</button>
-        <div>
-          Jika anda belum punya akun silahkan
-          <strong><a href="{% url 'register_view' %}">register</a></strong>
         </div>
+        <div class="text-white-50 text-center">
+          Belum punya Akun?
+          <strong><a href="{% url 'register_view' %}" class="link-light">Register</a></strong>
+        </div>
+        {% comment %} <div class="text-center mb-4">
+          <a class="text-white-50 " href="{% url 'lupa_password' %}">Lupa Password?</a>
+        </div> {% endcomment %}
       </form>
     </div>
   </div>
 </div>
 {% endblock content%} 
 {% block javascript %} 
-  
+<script>
+  // Taken from https://www.geeksforgeeks.org/how-to-toggle-password-visibility-in-forms-using-bootstrap-icons/
+  const togglePassword = document.getElementById('togglePassword');
+
+  const password = document.getElementById('id_password');
+
+  togglePassword.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Toggle the type attribute using
+      // getAttribure() method
+      const type = password
+          .getAttribute('type') === 'password' ?
+          'text' : 'password';
+            
+      password.setAttribute('type', type);
+
+      // Toggle the eye and bi-eye icon
+      togglePassword.classList.toggle('bi-eye');
+  });
+</script>
 {% endblock javascript %}

@@ -80,3 +80,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Backup data directory
+/backup/

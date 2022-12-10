@@ -1,4 +1,5 @@
 from django import forms
+from django import views
 
 class DestinationAreaForm(forms.Form):
     province_attrs = {
@@ -33,15 +34,12 @@ class DestinationAreaForm(forms.Form):
     }
     pic = forms.CharField(label="", required=False, widget=forms.TextInput(attrs=pic_attrs))
 
-
 class SiteForm(forms.Form):
-    dest_area_attrs = {
-        'type' : 'number',
-        'name' : 'dest_area',
-        'id' : 'dest_area',
-        'min': '1'
-    }
-    dest_area = forms.IntegerField(min_value=1, label='', required=True, widget=forms.NumberInput(attrs=dest_area_attrs))
+    def __init__(self, item_list, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        self.list_choices = [(x[0],  ', '.join(x[1:])) for x in item_list]
+        self.fields['dest_area'] = forms.ChoiceField(choices=self.list_choices)
+    dest_area = forms.ChoiceField()
 
     name_attrs = {
         'type' : 'text',
@@ -68,19 +66,17 @@ class SiteForm(forms.Form):
     pic = forms.CharField(label="", required=False, widget=forms.TextInput(attrs=pic_attrs))
 
 class AccommodationForm(forms.Form):
-    dest_area_attrs = {
-        'type' : 'number',
-        'name' : 'dest_area',
-        'id' : 'dest_area',
-        'min': '1'
-    }
-    dest_area = forms.IntegerField(min_value=1, label='', required=True, widget=forms.NumberInput(attrs=dest_area_attrs))
+    def __init__(self, item_list, *args, **kwargs):
+        super().__init__(*args,**kwargs)
+        self.list_choices = [(x[0],  ', '.join(x[1:])) for x in item_list]
+        self.fields['dest_area'] = forms.ChoiceField(choices=self.list_choices)
+    dest_area = forms.ChoiceField()
 
     name_attrs = {
         'type' : 'text',
         'name' : 'name',
         'id' : 'name',
-        'placeholder' : 'Enter site name HERE'
+        'placeholder' : 'Enter accommodation name HERE'
     }
     name = forms.CharField(label="", required=True, widget=forms.TextInput(attrs=name_attrs))
 
@@ -104,6 +100,7 @@ class AccommodationForm(forms.Form):
         'type' : 'number',
         'name' : 'price',
         'id' : 'price',
-        'min': '0'
+        'min': '0',
+        'placeholder' : 'Enter price HERE'
     }
-    price = forms.IntegerField(min_value=0, label='', required=True, widget=forms.NumberInput(attrs=price_attrs))
+    price = forms.IntegerField(min_value=0, label="", required=True, widget=forms.NumberInput(attrs=price_attrs))
