@@ -4,6 +4,12 @@
 {% block meta %}
     <title>Daftar {{saved_values.0}}</title>
     <style>
+        body{
+            margin-top: 75 !important;
+            padding:10px;
+            font-family: "Poppins";
+        }
+
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -20,28 +26,48 @@
         .tabel-daftar {
             display: flex;
             justify-content: center;
+            margin-bottom: 30px;
         }
 
         .container-utama {
             text-align: center;
             margin-bottom: 30px;
             margin-top: 20px;
+            padding-top: 30px;
         }
+
+        .gtext {
+            color: #aad969;
+        }
+
+        .button {
+            background-color: #aad969;
+            border: 1px solid #5C55E1;
+            color: #5C55E1;
+            font-size: 25px;
+            margin: 10px;
+    }
+
     </style>
 {% endblock meta %}
 
+
 {% block content %}
     <div class="container-utama">
-        <h1><strong>Daftar {{saved_values.0}}</strong></h1>
-        <div class="container"> <button onclick="location.href = '/admin_home';"> Kembali </button> </div>
-        <div class="container"> <button onclick="location.href = '/admin_home/{{saved_values.3}}';"> Tambah {{saved_values.0}} </button></div>
+        <h1><strong>Daftar <div class="gtext">{{saved_values.0}}</div></strong></h1>
+        <div> <button class="button" onclick="location.href = '/admin_home/{{saved_values.3}}';"> Tambah {{saved_values.0}} </button></div>
     </div>
+    <div class="container">
     <div class="tabel-daftar">
         <table>
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>{{saved_values.1}}</th>
+                    <!-- {% if saved_values.0 != "Destination Area" %}
+                        <th>Provinsi</th>
+                        <th>Kota</th>
+                    {% endif %} -->
                     <th>{{saved_values.2}}</th>
                     <th>Deskripsi</th>
                     <th>Gambar</th>
@@ -55,19 +81,21 @@
                 {% for item in item_list %}
                 <tr>
                     <td>{{forloop.counter}}.</td>
-                    <td>{{item.1}}</td>
+                    <td>{{item.1}}{% if saved_values.0 != "Destination Area" %}, {{item.5}}, {{item.6}}
+                    {% endif %}
+                    </td>
                     <td>{{item.2}}</td>
                     <td>{{item.3}}</td>
                     {% if item.4 != "" %}
                         <td>
                             <!-- <img src={{item.4}} alt="No Image" style="width:42px;height:42px;"> <br>  -->
-                            <a href={{item.4}}>{{item.4}}</a>
+                            <a href={{item.4}}>View Image</a>
                         </td>
                     {% else %}
                         <td>No Image Found</td>
                     {% endif %}
                     {% if saved_values.0 == "Accommodation" %}
-                        <td>{{item.5}}</td>
+                        <td>{{item.7}}</td>
                     {% endif %}
                     <!-- <td>
                         <button onclick="location.href = '/destination-area/{{item.1}}/accommodations/{{item.0}}';"> Lihat Detail </button>
@@ -76,5 +104,6 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     </div>
 {% endblock content %}

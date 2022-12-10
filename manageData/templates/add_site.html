@@ -2,102 +2,94 @@
 {% load static %}
 
 {% block meta %}
-    <title>Add Site</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<title>Add Site</title>
+<style>
+    .button {
+        background-color: #aad969;
+        border: 1px solid black;
+        color: white;
+        font-size: 25px;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    .container-utama {
+        text-align: center;
+        margin-bottom: 30px;
+        margin-top: 20px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 
-        input[type=text],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-        }
+    .container {
+        font-size: 20px;
+    }
 
-        input[type=submit] {
-            background-color: #04AA6D;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    textarea {
+        text-align: center;
+    }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
+    input {
+        text-align: center;
+    }
 
-        .container {
-            background-color: #f2f2f2;
-            padding: 10px;
-            width: 500px;
-            border-radius: 0.5rem;
-        }
+    input#name {
+        width: 15rem;
+    }
 
-        .div-name {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
+    input#pic {
+        width: 25rem;
+    }
 
-        .div-desc {
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-    </style>
+    .gtext {
+        color: #aad969;
+    }
+
+    .cont-sub {
+        padding-bottom: 10px;
+    }
+
+    .cont-but {
+        padding-top: 10px;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
-    <center>
-        <h1>Add Site</h1>
-        <div class="container"> <button onclick="history.back()"> Kembali </button> </div>
-        <div class="container">
-            <form method="post">
-                {% csrf_token %}
-                <div class="div-name">
-                    <div>
-                        <label for="dest_area">Destination Area ID</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.dest_area }}
-                    </div>
-                </div>
-                <div class="div-name">
-                    <div>
-                        <label for="name">Name</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.name }}
-                    </div>
-                </div>
-                <div class="div-desc">
-                    <div>
-                        <label for="desc">Description</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.desc }}
-                    </div>
-                </div>
-                <div class="div-desc">
-                    <div>
-                        <label for="pic">Picture</label>
-                    </div>
-                    <div style="margin-top: 5px;">
-                        {{ form.pic }}
-                    </div>
-                </div>
-                <input type="submit" value="Simpan Site">
-            </form>
-        </div>
-    </center>
+<link rel="stylesheet" href="{% static 'css/add_item.css' %}" />
+<div class="container-utama">
+    <div class="container">
+        <h1><strong>Add <div class="gtext">Site</strong></div>
+        </h1>
+    </div>
+    <!-- <div class="container"> <button onclick="history.back()"> Kembali </button> </div> -->
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="container">
+                <label for="dest_area">Destination Area</label>
+                <div class="cont-sub">{{ form.dest_area }}</div>
+            </div>
+
+            <div class="container">
+                <label for="name">Name</label>
+                <div class="cont-sub">{{ form.name }}</div>
+            </div>
+
+            <div class="container">
+                <label for="desc">Description</label>
+                <div class="cont-sub">{{ form.desc }}</div>
+            </div>
+
+            <div class="container">
+                <label for="pic">Picture</label>
+                <div class="cont-sub">{{ form.pic }}</div>
+            </div>
+
+            <div class="cont-but">
+                <button class="button" onclick="submit"> Simpan Site </button>
+            </div>
+
+        </form>
+    </div>
+</div>
 {% endblock content %}
