@@ -1,27 +1,3 @@
-body {
-  background-color: white;
-  font-family: "Poppins";
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-a:hover {
-  color: white;
-}
-
-.top-bar {
-  background-color: white;
-  margin-bottom: 0 !important;
-}
-
-.bottom-bar {
-  background-color: #aad969;
-  margin-top: 0 !important;
-  color: white;
-}
 
 .destination {
   border-radius: 5%;
@@ -36,6 +12,12 @@ a:hover {
   letter-spacing: 0;
   margin: 2vh;
   text-align: center;
+  transition: 0.5s;
+}
+
+.destination:hover {
+  margin-top: 2px;
+  transition: 0.5s;
 }
 
 .carousel-item {
@@ -54,20 +36,4 @@ a:hover {
 
 .carousel-caption subcaption {
   font-size: 2vw;
-}
-
-.dropdown-menu {
-  right: 0px;
-  text-align: right;
-}
-
-.dropdown-item {
-  color: #5c55e1;
-  transition: 1s;
-}
-
-.dropdown-item:hover {
-  background-color: #aad969;
-  color: white;
-  transition: 1s;
 }
