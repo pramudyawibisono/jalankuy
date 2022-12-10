@@ -1,35 +1,31 @@
-{% extends 'base.html' %} {% load static %} {% block meta %}
+{% extends 'main.html' %} {% load static %} {% block meta %}
+<link rel="stylesheet" href="{% static 'css/destination_area_detail.css' %}" />
 <title>Detail Destination Area</title>
-<style>
-  table,
-  th,
-  td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
-  }
-
-  th,
-  td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-
-  .tabel-reviews {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-
-  .container-atas {
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 20px;
-  }
-</style>
 {% endblock meta %} {% block content %}
+<div class="reviewbox">
+  <div class="d-flex flex-row">
+    <div class="col">
+      <div
+        class="destimage"
+        style="background-image: url('{{dest_area.4}}'); background-size:cover; background-repeat:no-repeat;"
+      ></div>
+    </div>
+    <div class="col">
+      <destination><strong>{{dest_area.2}}</strong></destination>
+      <p>{{dest_area.3}}</p>
+      <button onclick="location.href = '{{id}}/sites';">View Sites ></button>
+      <button onclick="location.href = '{{id}}/accommodations';">
+        View Accomodations >
+      </button>
+    </div>
+  </div>
+</div>
+<rvw><strong>Review</strong></rvw>
+<div class="review">
+  <div class="reviewbox">
+
+  </div>
+</div>
 <center>
   <div class="container-atas">
     <h1>Halaman detail Destination Area</h1>
