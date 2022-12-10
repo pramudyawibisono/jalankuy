@@ -29,6 +29,7 @@ def destinations(request):
     context = {'destination_area_list': destination_area_list}
     # print(context) # debug
 
+    context['user'] = str(request.user)
     return render(request, 'destination_area_list.html', context)
 
 @login_required(login_url='/auth/login')
@@ -49,6 +50,7 @@ def destination_detail(request, id):
         }
     print(context) # debug
 
+    context['user'] = str(request.user)
     return render(request, 'destination_area_detail.html', context)
 
 @login_required(login_url='/auth/login')
@@ -69,4 +71,9 @@ def add_destination_area_review(request, id):
     else:
         form = DestinationAreaReviewForm()
 
-    return render(request, 'add_destination_area_review.html', {'form': form})
+    context = {
+        'form': form
+        }
+
+    context['user'] = str(request.user)
+    return render(request, 'add_destination_area_review.html', context)

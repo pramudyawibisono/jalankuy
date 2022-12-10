@@ -20,6 +20,7 @@ def accommodations(request, destareaid):
 
     context = {'accommodation_list': accommodation_list, 'dest_area_name': dest_area_name}
 
+    context['user'] = str(request.user)
     return render(request, 'accommodation_list.html', context)
 
 
@@ -46,6 +47,7 @@ def accommodation_detail(request, destareaid, accommid):
         'ids': [destareaid, accommid]
         }
 
+    context['user'] = str(request.user)
     return render(request, 'accommodation_detail.html', context)
 
 
@@ -74,4 +76,6 @@ def add_accommodation_review(request, destareaid, accommid):
         'infos': infos[0],
         'form': form
     }
+
+    context['user'] = str(request.user)
     return render(request, 'add_accommodation_review.html', context)
