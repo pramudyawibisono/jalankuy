@@ -92,6 +92,16 @@ def add_site_review(request, destareaid, siteid):
             print(f"Sukses menambahkan review") # debug
             return HttpResponseRedirect(f'/{destareaid}/sites/{siteid}')
     else:
+        query = f'''
+            SELECT S.name sitename, DA.name destareaname, DA.province FROM DESTINATION_AREA DA, SITE S 
+            WHERE DA.id = {destareaid} AND S.id = {siteid} AND S.destareaid = DA.id;
+            '''
+        infos = execute_query(query)
         form = SiteReviewForm()
 
-    return render(request, 'add_site_review.html', {'form': form})
+        context = {
+        'infos': infos[0],
+        'form': form
+        }
+
+    return render(request, 'add_site_review.html', context)
