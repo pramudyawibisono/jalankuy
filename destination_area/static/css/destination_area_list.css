@@ -1,0 +1,78 @@
+body {
+  background-color: white;
+  font-family: "Poppins";
+}
+
+a{
+  text-decoration: none;
+  color:white;
+}
+
+a:hover{
+  color:white;
+}
+
+.header {
+  background-image: url(../images/Navbar.png);
+  background-size: 100%;
+}
+
+.top-bar {
+  background-color: white;
+  margin-bottom: 0 !important;
+}
+
+.bottom-bar {
+  background-color: #aad969;
+  margin-top: 0 !important;
+  color: white;
+}
+
+.destination{
+  border-radius:5%;
+  padding:10px;
+  width:300px;
+  height:250px;
+  background-color:gray;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: white;
+  color:transparent;
+  font-size:70px;
+  letter-spacing: 0;
+  margin:20px;
+  text-align: center;
+}
+
+.carousel-item{
+  height: 100vh;
+  background: no-repeat scroll center scroll;
+}
+
+.carousel-caption{
+  bottom:20%;
+  font-size:5vw;
+}
+
+.carousel-caption green{
+  color:#aad969;
+}
+
+.carousel-caption subcaption{
+  font-size:2vw;
+}
+
+.dropdown-menu{
+  right:0px;
+  text-align:right;
+}
+
+.dropdown-item{
+  color:#5C55E1;
+  transition:1s;
+}
+
+.dropdown-item:hover{
+  background-color: #aad969;
+  color:white;
+  transition: 1s;
+}
