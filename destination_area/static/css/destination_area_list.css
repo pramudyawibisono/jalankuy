@@ -3,18 +3,13 @@ body {
   font-family: "Poppins";
 }
 
-a{
+a {
   text-decoration: none;
-  color:white;
+  color: white;
 }
 
-a:hover{
-  color:white;
-}
-
-.header {
-  background-image: url(../images/Navbar.png);
-  background-size: 100%;
+a:hover {
+  color: white;
 }
 
 .top-bar {
@@ -28,51 +23,51 @@ a:hover{
   color: white;
 }
 
-.destination{
-  border-radius:5%;
-  padding:10px;
-  width:300px;
-  height:250px;
-  background-color:gray;
-  -webkit-text-stroke-width: 0.5px;
+.destination {
+  border-radius: 5%;
+  padding: 10px;
+  width: 300px;
+  height: 250px;
+  background-color: gray;
+  -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: white;
-  color:transparent;
-  font-size:70px;
+  color: transparent;
+  font-size: 70px;
   letter-spacing: 0;
-  margin:20px;
+  margin: 2vh;
   text-align: center;
 }
 
-.carousel-item{
+.carousel-item {
   height: 100vh;
   background: no-repeat scroll center scroll;
 }
 
-.carousel-caption{
-  bottom:20%;
-  font-size:5vw;
+.carousel-caption {
+  bottom: 20%;
+  font-size: 5vw;
 }
 
-.carousel-caption green{
-  color:#aad969;
+.carousel-caption green {
+  color: #aad969;
 }
 
-.carousel-caption subcaption{
-  font-size:2vw;
+.carousel-caption subcaption {
+  font-size: 2vw;
 }
 
-.dropdown-menu{
-  right:0px;
-  text-align:right;
+.dropdown-menu {
+  right: 0px;
+  text-align: right;
 }
 
-.dropdown-item{
-  color:#5C55E1;
-  transition:1s;
+.dropdown-item {
+  color: #5c55e1;
+  transition: 1s;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   background-color: #aad969;
-  color:white;
+  color: white;
   transition: 1s;
 }

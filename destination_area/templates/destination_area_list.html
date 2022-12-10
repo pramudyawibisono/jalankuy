@@ -150,7 +150,7 @@
 <div class="container align-items-center">
   <div class="row">
     {% for item in destination_area_list %}
-    <div class="col align-items-center"><a href="{{item.0}}"><div class="destination d-flex text-break align-items-center justify-content-center"><strong>{{item.2}}</strong></div></a></div>
+    <div class="col align-items-center"><a href="{{item.0}}"><div class="destination d-flex text-break align-items-center justify-content-center" style="background-image: url('{{item.4}}'); background-size:cover; background-repeat:no-repeat;"><strong>{{item.2}}</strong></div></a></div>
     {% endfor %}
   </div>
 </div>
