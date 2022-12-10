@@ -2,14 +2,14 @@
 {% load static %} 
 {% block title %}Register{%endblock %} 
 {% block style %}
-<link rel="stylesheet" href="{% static 'profile/base.css' %}" />
+<link rel="stylesheet" href="{% static 'auth/css/style.css' %}" />
 {% endblock style %} 
 {% block content %}
 <div class="position-absolute top-0 start-50 translate-middle-x" style="z-index:100;">
   {% if errors %} 
     {% for error in errors %}
-    <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem;width: 35rem" role="alert">
-      <svg class="bi flex-shrink-0 me-2" style="width:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="min-height:3.5rem" role="alert">
+      <svg class="bi flex-shrink-0 me-2" style="width:1rem; height:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
       <div>
         {{error}}
       </div>
@@ -19,10 +19,13 @@
   {% endif %} 
 </div>
 <div class="position-absolute top-50 start-50 translate-middle mb-5 pb-5 pt-5 mt-5">
-  <div class="card m-3 mt-4" style="width: 35rem">
+  <div class="card m-3 mt-5" style="width: 35rem; background-color:rgba(255, 255, 255, 0.2)">
     <div class="card-body">
       <div class="card-titile m-3">
-        <h4>JalanKuy | Register</h4>
+        <span style="color:#5c55e1;">
+          <h2 style="display:inline-block;">Jalan</h2><h2 style="color:#aad969;display:inline-block;">Kuy</h2>
+        </span>
+        <h5>Daftarkan akun baru anda</h5>
       </div>
       <form action="" method="post"class="m-3">
         {% csrf_token %}
@@ -32,13 +35,16 @@
           {{form}}
         </div>
         {% endfor %}
+        <div class="d-grid gap-2 mt-4 mb-4">
         <button type="submit" class="btn btn-primary">Submit</button>
-        <div>Jika anda sudah punya akun silahkan <strong><a href="{% url 'login_view' %}">login</a></strong></div>
+        </div>
+        <div class="text-white-50 text-center">Jika anda sudah punya akun silahkan <strong><a href="{% url 'login_view' %}" class="link-light">login</a></strong></div>
       </form>
     </div>
   </div>
 </div>
-{% endblock %}
+{% endblock content%}
+
 {% block javascript %}
   {% comment %} {% if errors %}
     {% for error  in errors %}
