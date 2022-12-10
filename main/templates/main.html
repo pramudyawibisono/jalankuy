@@ -65,38 +65,40 @@
   }
 </style>
 <body>
-<section class="header fixed-top">
-  <nav class="navbar navbar-expand-lg top-bar pb-0">
-    <div class="container-fluid">
-      <a class="navbar-brand pb-0" href="/"
-        ><img src="{% static 'images/Jalan.png' %}" style="width: 200px"
-      /></a>
-    </div>
-  </nav>
-
-  <nav class="navbar navbar-expand-lg bottom-bar pt-0">
-    <div class="container-fluid">
-      <a class="navbar-brand pt-0" href="/"
-        ><img src="{% static 'images/Kuy.png' %}" style="width: 230px"
-      /></a>
-
-      <div class="d-flex flex-row-reverse">
-        <a
-          href="#"
-          class="p-2 dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img src="{% static 'images/User.png' %}" width="15" /> Hello,
-          <strong style="color: #5c55e1">{{user}}</strong>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Edit profile</a></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
+  <section class="header fixed-top">
+    <nav class="navbar navbar-expand-lg top-bar pb-0">
+      <div class="container-fluid">
+        <a class="navbar-brand pb-0" href="/"
+          ><img src="{% static 'images/Jalan.png' %}" style="width: 200px"
+        /></a>
       </div>
-    </div>
-  </nav>
-</section>
-{% block content %}{% endblock content %}
+    </nav>
+
+    <nav class="navbar navbar-expand-lg bottom-bar pt-0">
+      <div class="container-fluid">
+        <a class="navbar-brand pt-0" href="/"
+          ><img src="{% static 'images/Kuy.png' %}" style="width: 230px"
+        /></a>
+
+        <div class="d-flex flex-row-reverse">
+          <a
+            href="#"
+            class="p-2 dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img src="{% static 'images/User.png' %}" width="15" /> Hello,
+            <strong style="color: #5c55e1">{{user}}</strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'logout'}">Sign out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>
+  {% block content %}{% endblock content %}
 </body>
