@@ -19,7 +19,7 @@ def execute_query(query):
         result = cursor.fetchall()
     return result
 
-# @login_required(login_url='/auth/login')
+@login_required(login_url='/auth/login')
 def sites(request, destareaid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM SITE WHERE destareaid = {destareaid};"
@@ -33,9 +33,11 @@ def sites(request, destareaid):
     context = {'site_list': site_list, 'dest_area_name': dest_area_name}
     print(context) # debug
 
+    context['user'] = str(request.user)
+
     return render(request, 'site_list.html', context)
 
-# @login_required(login_url='/auth/login')
+@login_required(login_url='/auth/login')
 def site_detail(request, destareaid, siteid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     query = f"SELECT * FROM SITE WHERE destareaid = {destareaid} AND id = {siteid};"
@@ -52,7 +54,7 @@ def site_detail(request, destareaid, siteid):
             'destareaid': destareaid,
             'is_not_available': is_not_available,
         }
-
+        context['user'] = str(request.user)
         return render(request, 'site_detail.html',context)
 
     site = site[0]
@@ -73,10 +75,11 @@ def site_detail(request, destareaid, siteid):
         'is_not_available': is_not_available,
         }
     #print(context) # debug
+    context['user'] = str(request.user)
 
     return render(request, 'site_detail.html', context)
 
-# @login_required(login_url='/auth/login')
+@login_required(login_url='/auth/login')
 def add_site_review(request, destareaid, siteid):
     # Cek udah login atau belum. Kalo belum, redirect ke login page
     reviewer = request.user # debug, dummy value 
@@ -103,5 +106,5 @@ def add_site_review(request, destareaid, siteid):
         'infos': infos[0],
         'form': form
         }
-
+    context['user'] = str(request.user)
     return render(request, 'add_site_review.html', context)
