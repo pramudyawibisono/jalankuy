@@ -1,38 +1,42 @@
 {% extends 'profile_base.html' %}
 {% load static %}
 
-  {% block titile %}
-    Profile
-  {% endblock titile %}
+{% block title %}
+Profile
+{% endblock title %}
 
-  
-  {% block style %}
-  
-  <link rel="stylesheet" href="{% static 'profile/style.css' %}"></link>
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'profile/style.css' %}">
+</link>
 <link rel="stylesheet" href="{% static 'auth/css/style.css' %}" />
 
-  {% endblock style %}
-    
+{% endblock style %}
 
-  {% block content %}
 
-  {% comment %} Sumber:  {% endcomment %}
+{% block content %}
 
-  {% comment %} <div class="d-flex"> {% endcomment %}
+{% comment %} Sumber: {% endcomment %}
+
+{% comment %} <div class="d-flex"> {% endcomment %}
   <div class="position-absolute top-0 start-50 translate-middle-x" style="z-index:100;">
-    {% if errors %} 
-      {% for error in errors %}
-        <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem" role="alert">
-          <svg class="bi flex-shrink-0 me-2" style="width:1rem; height:1rem" role="img" aria-label="Info:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-          <div>
-            {{error}}
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endfor %} 
-    {% endif %} 
+    {% if errors %}
+    {% for error in errors %}
+    <div class="alert alert-warning d-flex m-3 align-items-center alert-dismissible fade show" style="height:3.5rem"
+      role="alert">
+      <svg class="bi flex-shrink-0 me-2" style="width:1rem; height:1rem" role="img" aria-label="Info:">
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      <div>
+        {{error}}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
   </div>
-  <div class="main-body m-5"> 
+  <div class="main-body m-5">
     <div class="row gutters-sm">
       <div class="col-md-4 mb-3">
         <div class="card">
@@ -99,28 +103,29 @@
       </div>
     </div>
   </div>
-  {% comment %} </div> {% endcomment %}
+  {% comment %}
+</div> {% endcomment %}
 
 
 
-    {% comment %} <div > Profile </div>
-    <div >
-      <h1>email : {{ email }}</h1>
-    </div>
-    <div >
-      <h1>username : {{ username }}</h1>
-    </div>
-    <div >
-      <h1>nama : {{ name }}</h1>
-    </div>
-    <div >
-      <h1>nomor HP : {{ phone }}</h1>
-    </div>
-    <div >
-      <h1>foto : {{ photo }}</h1>
-    </div>
-    <a href="{% url 'edit_profile' %}">edit</a> {% endcomment %}
-  {% endblock content %}
-  
-  {% block javascript %}
-  {% endblock javascript %}
+{% comment %} <div> Profile </div>
+<div>
+  <h1>email : {{ email }}</h1>
+</div>
+<div>
+  <h1>username : {{ username }}</h1>
+</div>
+<div>
+  <h1>nama : {{ name }}</h1>
+</div>
+<div>
+  <h1>nomor HP : {{ phone }}</h1>
+</div>
+<div>
+  <h1>foto : {{ photo }}</h1>
+</div>
+<a href="{% url 'edit_profile' %}">edit</a> {% endcomment %}
+{% endblock content %}
+
+{% block javascript %}
+{% endblock javascript %}

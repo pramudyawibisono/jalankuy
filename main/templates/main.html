@@ -20,6 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
     rel="stylesheet"
   />
+  <link rel="icon" href="{% static 'images/logo-jalankuy.svg' %}">
   {% block meta %}{% endblock meta %}
 </head>
 <style>
@@ -93,7 +94,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/profile">Edit profile</a></li>
             <li>
-              <a class="dropdown-item" href="{% url 'logout'}">Sign out</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Sign out</a>
             </li>
           </ul>
         </div>
