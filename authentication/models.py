@@ -39,7 +39,7 @@ class UserAccount(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     # address = models.CharField(max_length=50)
-    photo = models.ImageField(null=True, blank=True, default="user_picture/default.png",upload_to="user_picture/", storage=OverwriteStorage())
+    photo = models.ImageField(null=True, blank=True, default="user_picture/default.png",upload_to="user_picture/")
     
     def __str__(self):
         return f"{self.email} | {self.name}"

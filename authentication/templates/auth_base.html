@@ -4,16 +4,16 @@
   <head>
     <meta charset="utf-8">
     <title>
-        
-        {% block title %}
-            
-        {% endblock title %}
-            
+      
+      {% block title %}
+      
+      {% endblock title %}
+      
     </title> 
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.css' %}">
     {% block style %}
         
     {% endblock style %}
-    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.css' %}">
   </head>
   <body>
     <div class="container">
@@ -32,11 +32,10 @@
         
       {% endblock content %}
     </div>
+    <script src="{% static 'vendor/bootstrap/bootstrap.js' %}"></script>
+  
+      {% block javascript %}
+        
+      {% endblock javascript %}
   </body>
-  <script src="{% static 'vendor/bootstrap/bootstrap.js' %}"></script>
-  <script type="text/javascript">
-    {% block javascript %}
-      
-    {% endblock javascript %}
-  </script>
 </html>
