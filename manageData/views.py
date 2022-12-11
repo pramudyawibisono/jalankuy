@@ -79,8 +79,7 @@ def add_destination_area(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_site(request):
 
-    item_list = execute_query("""SELECT DISTINCT DESTINATION_AREA.id, DESTINATION_AREA.province, DESTINATION_AREA.name 
-    FROM SITE, DESTINATION_AREA WHERE DESTINATION_AREA.id IN (SELECT destareaid FROM SITE)""")
+    item_list = execute_query("SELECT id, province, name FROM DESTINATION_AREA")
 
     if request.method == 'POST':
         form = SiteForm(item_list, request.POST)
@@ -105,8 +104,7 @@ def add_site(request):
 @user_passes_test(lambda u: u.is_superuser, login_url='/')
 def add_accommodation(request):
 
-    item_list = execute_query("""SELECT DISTINCT DESTINATION_AREA.id, DESTINATION_AREA.province, DESTINATION_AREA.name 
-    FROM ACCOMMODATION, DESTINATION_AREA WHERE DESTINATION_AREA.id IN (SELECT destareaid FROM ACCOMMODATION)""")
+    item_list = execute_query("SELECT id, province, name FROM DESTINATION_AREA")
 
     if request.method == 'POST':
         form = AccommodationForm(item_list, request.POST)
